@@ -14,3 +14,4 @@ Use left and right keys to move the mouth and catch the spicy peppers, be carefu
 
 
 
+![wireframe](https://user-images.githubusercontent.com/104798500/181157066-3da41427-796f-4249-bc60-ac86f3258ef5.jpeg)
