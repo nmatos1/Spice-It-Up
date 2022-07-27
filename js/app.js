@@ -67,3 +67,21 @@ let mouthData = [
 
 ]
 
+// displaying the mouth on the page
+
+let mouthThree = document.GetElementbyID('mouth');
+
+class Lips {
+    constructor(x,y,image,width,height){
+    this.x = x;
+    this.y =y;
+    this.image = image;
+    this.width = width;
+    this.height = height;
+    this.alive = true;
+
+    this.render = function(){
+        context.drawImage()
+    }
+    }
+}
