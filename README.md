@@ -12,9 +12,7 @@ You’re in a hot pepper contest to see if you can out beat your opponent, the p
 
 Use left and right keys to move the mouth and catch the spicy peppers, be careful not catch the sweet ones. 
 
-<<<<<<< HEAD
-![My Image](downloads/wireframe.jpeg)
-=======
+
 
 
 ![wireframe](https://user-images.githubusercontent.com/104798500/181157066-3da41427-796f-4249-bc60-ac86f3258ef5.jpeg)
