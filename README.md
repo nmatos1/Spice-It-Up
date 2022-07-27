@@ -1,7 +1,7 @@
 # Spice-It-Up
 
 Can you handle the spice
-Sweet peppers(yellow)- lose 5 points
+Sweet peppers(green)- lose 5 points
 Spicy peppers(red)- gain 10 points
 
 Open mouth to catch
