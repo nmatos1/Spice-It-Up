@@ -1,24 +1,23 @@
-
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Spice It Up!</title>
-        <script src="js/app.js"></script>
-        <link rel="text/style.css">
-    </head>
-    <body>
-        
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spicy Challenge</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <div id="container">
+        <aside id ="top-left"><h2>Spice It Up!</h2></aside>
+        <aside id="top-right"><h2 id ="movement"></h2></aside>
+    </div>
 
-        <div class = "mouthPic" >
-            <img src ="images/Mouth.png" alt="lips" id="mouth" style="display: none;">
-        </div>
-        
-        <div id = 'startScreen' class = 'screen' style ='display:block'>
-            <button onclick = 'startGame()'>Start</button></div>
-        
-        <canvas id = "canvas"><img src="images/background.jpg" id ="background"></canvas>
-        
-        
-         
-    </body>
+    <main>
+        <aside id ="btm-right"><h2 id ="score">100</h2></aside>
+    </main>
+<canvas></canvas>
+    <script src="./js/app.js"></script>
+</body>
 </html>

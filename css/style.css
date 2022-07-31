@@ -1,0 +1,16 @@
+
+html,body{
+    margin: 0;
+    padding:0;
+}
+#canvas{
+   background-image: url('../images/background.jpg');
+   background-repeat: repeat;
+
+}
+
+#top-right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
