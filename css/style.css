@@ -1,16 +1,22 @@
-/* 
-html,body{
-    margin: 0;
-    padding:0;
-}
-#canvas{
-   background-image: url('../images/background.jpg');
-   background-repeat: repeat;
-
-}
-
-#top-right{
+#timer{
+    background-color: red;
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
     display: flex;
-    justify-content: center;
     align-items: center;
-} */
+    justify-content: center;
+
+}
+
+#win{
+    position: absolute;
+    color:black;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
