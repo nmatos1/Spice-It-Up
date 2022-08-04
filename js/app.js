@@ -1,130 +1,89 @@
-    const canvas = document.querySelector('canvas');
-    const context = canvas.getContext('2d');
-    console.log(context);
-    canvas.width = innerWidth;
-    canvas.height= innerHeight;
-    let width = innerWidth;
-    let height = innerHeight;
-    let mouth;
-    const movement = document.getElementById('movement')
-    let myScore = document.getElementById('score');
-
-
-    // inital screen
-    window.addEventListener('DOMContentLoaded', function(){
-        mouth = new Player (75, 75, 'red', 40,80);
-        peppers = new Player(25 , 25,'green', 20, 40);
-    const runGame = setInterval(gameLoop,60);
-    });
-
-    document.addEventListener('keydown', movementHandler);
-
-////canvas rendering
-canvas.setAttribute('height', getComputedStyle(canvas)['height']);
-canvas.setAttribute('width', getComputedStyle(canvas)['width']);
-
-/////// Mouth Player///////////////////
-class Player{
-    constructor(x,y,color,width,height){
-        this.position = {
-            x : x,
-            y : y,
-        }
-        this.width = width;
-        this.height = height;  
-        this.color = color;
-        this.alive = true; 
-        this.render = function(){
-            context.fillStyle = this.color;
-            context.fillRect(this.position.x, this.position.y,this.width, this.height);
-        }}
-    }
-
-
+    const context = canvas.getContext('2d'); // variable to code canvas
+    // canvas.width = innerWidth;
+    // canvas.height= innerHeight;
+    let mouthX = 300;
+    let score = 0;
+    let changeX =0; //variables
+    
+    let x1 = [100,300,500]; 
+    let y1= [0,0,0];
+    let speed1=[2,1,3]; // falling green pepper
+    
+    let x = [100,300,500]; 
+    let y= [0,0,0];
+    let speed=[2,1,3]; // arrays to store each of the falling red pepper
+    let timesUp = setInterval(mainLoop,20);   //runs mainLoop
+ 
+    //creating the movement for the mouth
    
 
+function mainLoop(){
+    context.clearRect(0,0,640,480); //clear the canvas
+    context.font = "30px Arial"; 
+    context.fillText("Score: " +score, 10, 30);
+    for(let i = 0; i < 3; i++){
+        context.drawImage(pepper, x[i],y[i],80,80);
+        y[i]+=speed[i];
+        checkHits(i);
+        if(y[i]> 480){
+            y[i] =- 80;
+            x[i]= Math.random()*600
+        }} 
+        context.drawImage(mouth, mouthX, 400,80,80);
+        mouthX += changeX; 
+        if(mouthX<0) mouthX = 0;
+        if(mouthX>560) mouthX = 560;// run the code for the falling peppers at the x and y values, moving by speed value, if caught the function stops running
+        for(let i = 0; i < 3; i++){
+            context.drawImage(pepperTwo, x1[i],y1[i],80,80);
+            y1[i]+=speed1[i];
+            checkHits(i);
+            if(y1[i]> 480){
+                y1[i] =+ 80;
+                x1[i]= Math.random()*600}
 
-/////////////////////////////////////////////////
+        }context.drawImage(mouth, mouthX, 400,80,80);
+        mouthX += changeX; 
+        if(mouthX<0) mouthX = 0;
+        if(mouthX>560) mouthX = 560;//moving mouth
+    }
+    
 
-//creating the movement for the square
+        
+function checkHits(i){
+    if((Math.abs(400-y[i])<60) && (Math.abs(mouthX-x[i])<60)){
+        score+=5;
+        y[i]=-80; 
+        x[i]= Math.random()*600;
+         //checks to see if there are less than 60px apart v & h and move at random positions
+        checkHits();
+        
+    } else if ((Math.abs(400-y[i])<60) && (Math.abs(mouthX-x[i])<60)){
+        score-=2;
+        y1[i]=-80; 
+        x1[i]= Math.random()*600;
+        checkHits();
+    }
+}
 
 function movementHandler(e){
-    console.log('movement', e.key);
-
     switch(e.key){
         case 'ArrowLeft':
-            mouth.position.x - 10>= 0 ? (mouth.position.x -= 10) : null;
+            mouthX - 10>= 0 ? (mouthX -= 10) : null;
             break;
         case 'ArrowRight': 
-        mouth.position.x + 10 <= canvas.width ?(mouth.position.x += 10): null;
+        mouthX + 10 <= canvas.width ?(mouthX += 10): null;
         break;
     }
 };
 
-//game processing
+document.addEventListener('keydown', movementHandler);
 
-function gameLoop(){
-    context.clearRect(0,0, canvas.width, canvas.height);
-    movement.textContent =  `X:${mouth.position.x}\nY:${mouth.position.y}`;
-if(mouth.alive){ 
-    peppers.render();
-    let hit = detectHit(peppers, mouth);
-    
-}
-mouth.render();
-};
+setTimeout(gameOver, 60000);
+function gameOver(){
+    clearInterval(timesUp);
+    context.font="80px Arial";
+    context.fillText("Game Over!" , 100, 250);
+} //call this function after 60 seconds after timer runs out
 
-/////function for multiple peppers
-function newPeppers(){
-peppers.alive = false;
-    setTimeout(function() {
-        let x = Math.floor(Math.random() * canvas.width) - 40;
-        let y = Math.floor(Math.random() * canvas.height) - 80;
-        peppers = new Player(x, y, red, 20, 60);
-    }, 1000);
-    return true;
-}
-//collision 
-
-function detectHit(p1, p2){
-    let hitTest = 
-    p1.y + p1.h > p2 &&
-    p1.y < p2.y + p2.height &&
-    p1.x + p1.width > p2.x &&
-    p1.x <p2.x + p2.width;
-
-    if(hitTest){
-        let newScore = Number(myScore.textContent) + 100;
-        myScore.textContent = newScore;
-        return  
-    }
-
-}
-
-
-///falling objects////
-
-let yPosition = 0;
-
-function myTimer (){
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    yPosition = yPosition + 4;
-    context.strokeRect(120, yPosition.newPeppers, 60, 60);
-    context.fillRect(180,yPosition.newPeppers,60,60);
-}
-setInterval(myTimer, 25);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+alert('Use the left and right arrows to move the mouth side to side');
 
